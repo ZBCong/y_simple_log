@@ -43,6 +43,10 @@
         return *this;                                               \
     }
 
+#define YSIMPLELOG_STANDARD_DECLARE(theClass) \
+    YSIMPLELOG_BASE_OPERATOR_IMPL(theClass); \
+    YSIMPLELOG_IMPL_MEM_FUNC(theClass, debug, YSIMPLELOG_STANDARD_EXP_BEGIN(debug), "\t[" << pSrcFilePath << '@' << std::dec << ullSrcFileLine << " in " << pSrcFuncSig << ']' << '\n'); \
+    YSIMPLELOG_IMPL_MEM_FUNC(theClass, base,  YSIMPLELOG_STANDARD_EXP_BEGIN(base), '\n');
 
 namespace y
 {
@@ -77,10 +81,7 @@ public:
         m_stream << m_endbuf.str();
         m_stream.close();
     }
-
-    YSIMPLELOG_BASE_OPERATOR_IMPL(CFileWritter);
-    YSIMPLELOG_IMPL_MEM_FUNC(CFileWritter, debug, YSIMPLELOG_STANDARD_EXP_BEGIN(debug), "\t[" << pSrcFilePath << '@' << std::dec << ullSrcFileLine << " in " << pSrcFuncSig << ']' << '\n');
-    YSIMPLELOG_IMPL_MEM_FUNC(CFileWritter, base,  YSIMPLELOG_STANDARD_EXP_BEGIN(base), '\n');
+    YSIMPLELOG_STANDARD_DECLARE(CFileWritter);
 };
 
 class CConsoleWritter
@@ -96,9 +97,7 @@ public:
         m_stream << m_endbuf.str();
     }
 
-    YSIMPLELOG_BASE_OPERATOR_IMPL(CConsoleWritter);
-    YSIMPLELOG_IMPL_MEM_FUNC(CConsoleWritter, debug, YSIMPLELOG_STANDARD_EXP_BEGIN(debug), "\t[" << pSrcFilePath << '@' << std::dec << ullSrcFileLine << " in " << pSrcFuncSig << ']' << '\n');
-    YSIMPLELOG_IMPL_MEM_FUNC(CConsoleWritter, base,  YSIMPLELOG_STANDARD_EXP_BEGIN(base), '\n');
+    YSIMPLELOG_STANDARD_DECLARE(CConsoleWritter);
 };
 }
 }
