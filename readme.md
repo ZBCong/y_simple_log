@@ -1,4 +1,4 @@
-# y_simple_log:很小很烂的日志打印
+# y_simple_log: simple log for cpp
 
 ------
 
